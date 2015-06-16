@@ -1,0 +1,60 @@
+<!-- Page Content -->
+	<div class="container-fluid">
+			<div class="row">
+					<div class="col-lg-12 ">
+							<h2>Scout</h2>
+							<div class="well col-sm-8 text-center" style="margin-bottom:30px">
+								<form class="form-inline" ng-submit="submit()">
+									<input type="hidden" ng-model="scoutData.id">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="First Name" id="firstName" ng-model="scoutData.firstName">
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Last Name" id="lastName" ng-model="scoutData.lastName">
+									</div>
+									<button type="submit" class="btn btn-success">{{btnText}}</button>
+									<button ng-click="clear()" type="button" class="btn btn-default">Clear</button>
+									
+								</form>
+							</div>
+							
+							<div class="clearfix"></div>
+
+							<div class="col-sm-8">
+
+								<div class="form-group col-sm-4 pull-right" style="margin-bottom:0">
+									<input type="text" ng-model="search" class="form-control" placeholder="Search">
+								</div>
+								<div class="clearfix"></div>
+								
+								<table class="table table-condensed table-striped">
+									<thead>
+										<tr>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>Date</th>
+											<th>&nbsp;</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- | orderBy:['firstName','lastName']:true -->
+										<tr ng-repeat="scout in scouts | filter:search">
+											<td>{{scout.firstName}}</td>
+											<td>{{scout.lastName}}</td>
+											<td>{{scout.lastUpdatedDate | date:'MMM dd, yyyy h:mma'}}</td>
+											<td class="text-right">
+												<button ng-click="update(scout)" type="button" class="btn btn-info btn-sm">Edit</button>
+												<button ng-click="delete(scout._id)" type="button" class="btn btn-danger btn-sm">Delete</button>
+											</td>
+										</tr>
+
+										<tr ng-hide="scouts.length">
+											<td class="text-center" colspan="4">No scouts yet!</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+					</div>
+			</div>
+	</div>
+<!-- /#page-content-wrapper -->

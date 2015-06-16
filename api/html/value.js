@@ -1,0 +1,1 @@
+app.value("ServiceUrl","http://localhost:3000/api/");

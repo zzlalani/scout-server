@@ -1,0 +1,22 @@
+{
+  "name": "Scout-Attendance",
+  "description": "Scout-Attendance API",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.0",
+    "winston": "0.7.2",
+	"mongodb": "1.3.19",
+	"mongoose": "3.6.20",
+	"uglify-js": "2.4.0",
+	"nodeunit": "0.8.1",
+	"uglifycss": "0.0.7",
+	"crypto": "0.0.3",
+	"ejs": "0.8.5",
+	"underscore": "1.5.2",
+	"connect-mongo":"0.4.1",
+	"nodeunit-express":"0.0.1",
+    "connect-multiparty":"1.2.5",
+    "nodemailer" : "0.5.13"
+  }
+}
