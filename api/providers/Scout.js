@@ -51,6 +51,7 @@ scout.setup = function(app) {
 
             scout.firstName = data.firstName;
             scout.lastName = data.lastName;
+            scout.unit = data.unit;
 
             scout.save(function(err, s) {
 
@@ -129,6 +130,7 @@ scout.setup = function(app) {
 
                     scout.firstName = data.firstName;
                     scout.lastName = data.lastName;
+                    scout.unit = data.unit;
 
                     scout.save(function(err, s) {
 
@@ -202,7 +204,7 @@ scout.setup = function(app) {
 
         // get list of scouts
         // mongo query will work on iso date
-        Scout.find(condition, 'firstName lastName lastUpdatedDate', function(err, scouts) {
+        Scout.find(condition, 'firstName lastName unit lastUpdatedDate', function(err, scouts) {
 
             if (err) {
                 logger.error(JSON.stringify(err));
@@ -245,7 +247,7 @@ scout.setup = function(app) {
 
         // get list of scouts
         // mongo query will work on iso date
-        Scout.find({}, 'id firstName lastName lastUpdatedDate', function(err, scouts) {
+        Scout.find({}, 'id firstName lastName unit lastUpdatedDate', function(err, scouts) {
 
             if (err) {
                 logger.error(JSON.stringify(err));

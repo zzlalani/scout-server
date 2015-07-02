@@ -13,6 +13,7 @@ var scoutSchema = db.Schema({
 	firstName: String,
 	lastName: String,
 	picture: String,
+	unit: String,
 	lastUpdatedDate: {
 		type: Date,
 		default: Date.now

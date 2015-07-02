@@ -5,10 +5,10 @@ app.controller('ScoutCtrl', ['$scope', '$Api', 'SweetAlert', function($scope, $A
 	$scope.btnText = "Add";
 
 	$scope.submit = function () {
-		if ( $scope.scoutData.firstName == '' || $scope.scoutData.lastName == '' ) {
+		if ( $scope.scoutData.firstName == '' || $scope.scoutData.lastName == '' || $scope.scoutData.unit == '' ) {
 			return false;
 		}
-		
+
 		if ( $scope.scoutData.id != '' && $scope.scoutData.index != undefined ) {
 
 			var index = $scope.scoutData.index;
@@ -71,6 +71,7 @@ app.controller('ScoutCtrl', ['$scope', '$Api', 'SweetAlert', function($scope, $A
 			id: scout._id,
 			firstName: scout.firstName,
 			lastName: scout.lastName,
+			unit: scout.unit,
 			index: index
 		};
 		$scope.btnText = "Update";
@@ -88,4 +89,21 @@ app.controller('ScoutCtrl', ['$scope', '$Api', 'SweetAlert', function($scope, $A
 	}
 
 	bringData();
+
+	$scope.getUnit = function ( unit ) {
+		var unitVal = null;
+		switch (unit) {
+			case "shaheen":
+				unitVal = "Shaheen";
+				break;
+			case "scouts":
+				unitVal = "Scouts";
+				break;
+			case "rovers":
+				unitVal = "Rovers";
+				break;
+
+		}
+		return unitVal;
+	}
 }]);

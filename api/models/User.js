@@ -12,7 +12,8 @@ var userSchema = db.Schema({
     id:String,
     userName :String,
     password: String,
-    name: String
+    name: String,
+    access: String
 
 });
 

@@ -12,6 +12,14 @@
 									<div class="form-group">
 										<input type="text" class="form-control" placeholder="Last Name" id="lastName" ng-model="scoutData.lastName">
 									</div>
+									<div class="form-group">
+										<select class="form-control" ng-model="scoutData.unit">
+											<option value="shaheen">Shaheen</option>
+											<option value="scouts">Scouts</option>
+											<option value="rovers">Rovers</option>
+										</select>
+									</div>
+									<div class="clear-fix">&nbsp;</div>
 									<button type="submit" class="btn btn-success">{{btnText}}</button>
 									<button ng-click="clear()" type="button" class="btn btn-default">Clear</button>
 									
@@ -32,6 +40,7 @@
 										<tr>
 											<th>First Name</th>
 											<th>Last Name</th>
+											<th>Unit</th>
 											<th>Date</th>
 											<th>&nbsp;</th>
 										</tr>
@@ -41,6 +50,7 @@
 										<tr ng-repeat="scout in scouts | filter:search">
 											<td>{{scout.firstName}}</td>
 											<td>{{scout.lastName}}</td>
+											<td>{{getUnit(scout.unit)}}</td>
 											<td>{{scout.lastUpdatedDate | date:'MMM dd, yyyy h:mma'}}</td>
 											<td class="text-right">
 												<button ng-click="update(scout)" type="button" class="btn btn-info btn-sm">Edit</button>
