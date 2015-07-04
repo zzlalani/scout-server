@@ -18,6 +18,11 @@ var app = angular.module('scout-admin', [
 		url: "/scout",
 		templateUrl: "scout/scout.html",
 		controller: "ScoutCtrl"
+	})
+	.state('user', {
+		url: "/user",
+		templateUrl: "user/user.html",
+		controller: "UserCtrl"
 	});
 		
 

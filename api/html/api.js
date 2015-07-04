@@ -138,6 +138,116 @@ app.service('$Api', ['$http', '$q', 'ServiceUrl', function($http, $q, ServiceUrl
 			}
 			return promise;
 		}
+
+		// Users
+		this.addUser = function (data) {
+			
+			var deferred = $q.defer();
+			var promise = deferred.promise;
+
+			$http.post(ServiceUrl + 'user/add', data)
+			.success(function(data, status, headers, config) {
+				deferred.resolve({
+					status: data.status
+				});
+			})
+			.error(function(data, status, headers, config) {
+				deferred.reject({
+					status: 'FAIL'
+				});
+			});
+
+			promise.success = function(fn) {
+				promise.then(fn);
+				return promise;
+			}
+			promise.error = function(fn) {
+				promise.then(null, fn);
+				return promise;
+			}
+			return promise;
+		}
+
+		this.updateUser = function (data) {
+			
+			var deferred = $q.defer();
+			var promise = deferred.promise;
+			var id = data.id;
+
+			$http.post(ServiceUrl + 'user/update/' + id, data)
+			.success(function(data, status, headers, config) {
+				deferred.resolve({
+					status: data.status,
+					data: data.data
+				});
+			})
+			.error(function(data, status, headers, config) {
+				deferred.reject({
+					status: 'FAIL'
+				});
+			});
+
+			promise.success = function(fn) {
+				promise.then(fn);
+				return promise;
+			}
+			promise.error = function(fn) {
+				promise.then(null, fn);
+				return promise;
+			}
+			return promise;
+		}
+
+		this.getUsers = function () {
+			var deferred = $q.defer();
+			var promise = deferred.promise;
+
+			$http.get(ServiceUrl + 'users/list')
+			.success(function(data, status, headers, config) {
+				deferred.resolve(data);
+			})
+			.error(function(data, status, headers, config) {
+				deferred.reject({
+					status: 'FAIL'
+				});
+			});
+
+			promise.success = function(fn) {
+				promise.then(fn);
+				return promise;
+			}
+			promise.error = function(fn) {
+				promise.then(null, fn);
+				return promise;
+			}
+			return promise;
+		}
+
+		this.deleteUser = function (id) {
+			var deferred = $q.defer();
+			var promise = deferred.promise;
+
+			$http.get(ServiceUrl + 'user/remove/'+id)
+			.success(function(data, status, headers, config) {
+				deferred.resolve(data);
+			})
+			.error(function(data, status, headers, config) {
+				deferred.reject({
+					status: 'FAIL'
+				});
+			});
+
+			promise.success = function(fn) {
+				promise.then(fn);
+				return promise;
+			}
+			promise.error = function(fn) {
+				promise.then(null, fn);
+				return promise;
+			}
+			return promise;
+		}
+		// *Users
 	}
 
 	return new Api();

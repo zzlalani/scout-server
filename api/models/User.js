@@ -13,8 +13,18 @@ var userSchema = db.Schema({
     userName :String,
     password: String,
     name: String,
-    access: String
+    access: String,
+    lastUpdatedDate: {
+		type: Date,
+		default: Date.now
+	}
+});
 
+// http://stackoverflow.com/a/12670523
+userSchema.pre('save', function(next){
+	now = new Date();
+	this.lastUpdatedDate = now;
+	next();
 });
 
 module.exports = db.model('User', userSchema);
