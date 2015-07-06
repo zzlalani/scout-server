@@ -58,7 +58,7 @@ var http = require('http');
 httpServer = http.createServer(app);
 // Make the server listen
 httpServer.listen( server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", server_port " + server_port )
+  logger.info( "Listening on " + server_ip_address + ", server_port " + server_port );
 });
 
-logger.info( 'Listening on port ' + config.http.port + ' with SSL ' + config.http.enableSSL );
+

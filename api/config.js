@@ -43,5 +43,5 @@ module.exports = config;
 
 //take advantage of openshift env vars when available:
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-	config.db.host = process.env.OPENSHIFT_MONGODB_DB_URL + 'scouts-attendance';
+	config.db.host = process.env.OPENSHIFT_MONGODB_DB_URL + 'scouts';
 }
