@@ -51,10 +51,14 @@ attendanceProvider.setup( app );
 // Start the http server
 var httpServer;
 
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || config.http.port
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 var http = require('http');
 httpServer = http.createServer(app);
 // Make the server listen
-httpServer.listen( config.http.port );
+httpServer.listen( server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", server_port " + server_port )
+});
 
 logger.info( 'Listening on port ' + config.http.port + ' with SSL ' + config.http.enableSSL );
