@@ -76,7 +76,8 @@ user.setup = function(app) {
                     var userObject = {
                         id: user._id,
                         name: user.name,
-                        userName: user.userName
+                        userName: user.userName,
+                        access: user.access
                     };
                     responseJSON.status = 'OK';
                     responseJSON.user = userObject;
@@ -239,7 +240,7 @@ user.setup = function(app) {
                     user.userName = data.userName;
                     user.access = data.access;
                     
-                    if (data.password != '') {
+                    if (data.password) {
                         user.password = data.password;
                     }
 
