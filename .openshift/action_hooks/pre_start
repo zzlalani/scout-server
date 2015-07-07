@@ -1,6 +1,0 @@
-cd nodejs; 
-npm install bower;
-cd ../app-root/repo/;
-mkdir logs;
-cd api/html/; 
-bower install;
