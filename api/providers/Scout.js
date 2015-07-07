@@ -184,22 +184,26 @@ scout.setup = function(app) {
      * 1- date: String
      *
      **/
-    app.get('/api/scouts/list/:date', function(req, res) {
+    app.get('/api/scouts/list/:access/:date', function(req, res) {
 
-        logger.info('Inside /api/scouts/list/:date GET');
+        logger.info('Inside /api/scouts/list/:access/:date GET');
         logger.info('date: ' + req.params.date);
+        logger.info('access: ' + req.params.access);
 
         // Construct response JSON
         var responseJSON = {};
 
         var date = req.params.date;
+        var access = req.params.access;
+
         date = date.replace('+', ' ');
         logger.info('$gt date ' + new Date(date).toISOString());
         
         var condition = {
             lastUpdatedDate: {
                 '$gt': new Date(date).toISOString()
-            }
+            },
+            unit: access
         };
 
         // get list of scouts

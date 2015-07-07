@@ -33,16 +33,22 @@ attendance.setup = function(app) {
 	 *
 	 *  method: POST
 	 */
-	app.post('/api/attendance/add', function(req, res) {
+	app.post('/api/attendance/add/:access', function(req, res) {
 
-		logger.info('Inside /api/attendance/add POST');
+		logger.info('Inside /api/attendance/add/:access POST');
+		logger.info('access: ' + req.params.access);
 
 		var responseJSON = {};
 		var data = req.body;
+		var access = req.params.access;
+
 		console.log(data.guid);
 		if (data.guid) {
 
-			Attendance.findOne({guid:data.guid}, function(err, attendance) {
+			Attendance.findOne({
+				guid:data.guid,
+				type: access
+			}, function(err, attendance) {
 
 				if (err) {
 					logger.error(JSON.stringify(err));
@@ -57,7 +63,7 @@ attendance.setup = function(app) {
 				if (attendance != null) {
 
 					attendance.date = data.date;
-					
+
 					for ( var i in data.present ) {
 						// if attendance already exists update -> else add
 						if ( attendance.present[i] ) {
@@ -116,6 +122,7 @@ attendance.setup = function(app) {
 					attendance.date = data.date;
 					attendance.present = data.present;
 					attendance.name = data.name;
+					attendance.type = access;
 					attendance.lastUpdatedDate = data.lastUpdatedDate;
 
 					attendance.save(function(err, a) {
@@ -161,22 +168,26 @@ attendance.setup = function(app) {
 	 * 1- date: String
 	 *
 	 **/
-	app.get('/api/attendance/list/:date', function(req, res) {
+	app.get('/api/attendance/list/:access/:date', function(req, res) {
 
-		logger.info('Inside /api/attendance/list/:date GET');
+		logger.info('Inside /api/attendance/list/:access/:date GET');
+		logger.info('access: ' + req.params.access);
 		logger.info('date: ' + req.params.date);
 
 		// Construct response JSON
 		var responseJSON = {};
 
 		var date = req.params.date;
+		var access = req.params.access;
+
 		date = date.replace('+', ' ');
 		logger.info('$gt date ' + new Date(date).toISOString());
 		
 		var condition = {
 			syncedDate: {
 				'$gt': new Date(date).toISOString()
-			}
+			},
+			type: access
 		};
 
 		// get list of scouts

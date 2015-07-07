@@ -8,7 +8,7 @@ var app = angular.module('scout-admin', [
 	'oitozero.ngSweetAlert'
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.otherwise("index");
+	$urlRouterProvider.otherwise("/");
 	$stateProvider.state('index', {
 		url: "/",
 		templateUrl: "index/index.html",

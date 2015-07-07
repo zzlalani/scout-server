@@ -14,6 +14,7 @@ var attendanceSchema = db.Schema({
 	date: String,
 	present: Object,
 	name: String,
+	type: String,
 	lastUpdatedDate: Date,
 	syncedDate: {
 		type: Date,

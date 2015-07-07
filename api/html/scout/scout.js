@@ -3,7 +3,8 @@
 app.controller('ScoutCtrl', ['$scope', '$Api', 'SweetAlert', function($scope, $Api, SweetAlert) {
 
 	$scope.btnText = "Add";
-
+	$scope.filter = {};
+	
 	$scope.submit = function () {
 		if ( $scope.scoutData.firstName == '' || $scope.scoutData.lastName == '' || $scope.scoutData.unit == '' ) {
 			SweetAlert.swal("Required fields missing", "First Name, Last Name and Unit is required");
